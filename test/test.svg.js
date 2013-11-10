@@ -17,12 +17,15 @@ function onload(f){
 }
 var svg = [];
 onload(function() {
-	var bgcolors = ["#ffbb00", "#ccdd00", "#00ddcc", "#00bbff", "#bb00ee", "#ff00bb", "#444444", ];
+	var bgcolors = [
+	                "#ffbb00", "#ccdd00", "#00ddcc", "#00bbff", "#bb00ee", "#ff00bb", "#444444",
+	                "#ffff00", "#dddd00", "#00dddd", "#00ffff", "#ee00ee", "#ff00ff", "#222222",
+	                ];
 	var d = document.getElementsByTagName('BODY')[0];
 	for(var i = 0; i < bgcolors.length; i++) {
 		svg.push(Svg.createElement('svg', {
 			"width":"80px","height":"60px",
-			"style":"display:block;margin:1px;background-color:"+bgcolors[i]+";"
+			"style":"margin:1px;background-color:"+bgcolors[i]+";"
 		}));
 		d.appendChild(svg[i]);
 	}
@@ -50,7 +53,15 @@ onload(function() {
 
 onload(function() {
 	svg[4].appendChild(
-			Svg.createPathElement("M10 10 Q30 80 40 30 Q50 -20 70 50",{"stroke":"#ffffff","stroke-width":"2","fill":"#ee88ff"}));
+			new Svg.Path(
+					new Svg.Path.d()
+						.moveTo(10,10)
+						.quadBezierTo(30,80,40,30)
+						.quadBezierTo(70,50)
+						.toString(),
+					{"stroke":"#ffffff","stroke-width":"2","fill":"#ee88ff"}
+				).element
+		);
 });
 
 onload(function() {
@@ -61,4 +72,36 @@ onload(function() {
 onload(function() {
 	svg[6].appendChild(
 			Svg.createPolylineElement("10,50 70,50 40,10",{"stroke":"#ffffff","stroke-width":"2","fill":"#888888"}));
+});
+
+onload(function() {
+	svg[7].appendChild(
+			new Svg.Path(
+					new Svg.Path.d()
+						.moveTo(10,10)
+						.lineRel(20,40)
+						.hlineTo(50)
+						.vlineTo(10)
+						.hlineRel(20)
+						.vlineRel(40)
+						.cubicBezierTo(70, 10, 10, 10)
+						.toString(),
+					{"stroke":"#ffffff","stroke-width":"2","fill":"#ee88ff"}
+				).element
+		);
+});
+
+onload(function() {
+	svg[8].appendChild(
+			new Svg.Path(
+					new Svg.Path.d()
+						.moveTo(10,10)
+						.quadBezierRel(60, 0, 60, 40)
+						.moveRel(-60,-40)
+						.cubicBezierRel(0, 50, 60, 40)
+						.lineRel(-60,-40)
+						.toString(),
+					{"stroke":"#ffffff","stroke-width":"2","fill":"#ee88ff"}
+				).element
+		);
 });

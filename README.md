@@ -1,5 +1,5 @@
-svg.js
-=======
+jp.coocan.life.bicycle.svg.js
+=============================
 
 WebページからSVG要素の操作を簡単にするjavascript。
 
