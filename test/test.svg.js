@@ -19,7 +19,7 @@ var svg = [];
 onload(function() {
 	var bgcolors = [
 	                "#ffbb00", "#ccdd00", "#00ddcc", "#00bbff", "#bb00ee", "#ff00bb", "#444444",
-	                "#ffff00", "#dddd00", "#00dddd", "#00ffff", "#ee00ee", "#ff00ff", "#222222",
+	                "#ffff00", "#dddd00", "#00dddd", "#00ffff", "#8800dd", "#ff00ff", "#222222",
 	                ];
 	var d = document.getElementsByTagName('BODY')[0];
 	for(var i = 0; i < bgcolors.length; i++) {
@@ -102,6 +102,58 @@ onload(function() {
 						.lineRel(-60,-40)
 						.toString(),
 					{"stroke":"#ffffff","stroke-width":"2","fill":"#ee88ff"}
+				).element
+		);
+});
+
+onload(function() {
+	var turtle = new Svg.TurtlePath(5, 5, 0, true);
+	var width = 70;
+	var height = 50;
+	var d = 5;
+	for(var i = 0; i < 5; i++) {
+		turtle.go(width)
+		.right(90).go(height)
+		.right(90).go(width)
+		.right(90).go(height-d)
+		.right(90).go(d);
+		width -= d * 2;
+		height -= d * 2;
+	}
+	svg[9].appendChild(
+			new Svg.Path(
+					turtle.getPath().toString(),
+					{"stroke":"#ffffff","stroke-width":"2","fill":"none"}
+				).element
+		);
+});
+function goTurtle(turtle, distance, level) {
+	if(level == 0) {
+		turtle.go(distance);
+		return;
+	} else {
+		goTurtle(turtle, distance / 4, level - 1);
+		turtle.left(90);
+		goTurtle(turtle, distance / 4, level - 1);
+		turtle.right(90);
+		goTurtle(turtle, distance / 4, level - 1);
+		turtle.right(90);
+		goTurtle(turtle, 2 * distance / 4, level - 1);
+		turtle.left(90);
+		goTurtle(turtle, distance / 4, level - 1);
+		turtle.left(90);
+		goTurtle(turtle, distance / 4, level - 1);
+		turtle.right(90);
+		goTurtle(turtle, distance / 4, level - 1);
+	}
+}
+onload(function() {
+	var turtle = new Svg.TurtlePath(0, 30, 0, true);
+	goTurtle(turtle, 80, 2);
+	svg[10].appendChild(
+			new Svg.Path(
+					turtle.getPath().toString(),
+					{"stroke":"#ffffff","stroke-width":"2","fill":"none"}
 				).element
 		);
 });
