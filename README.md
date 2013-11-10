@@ -3,17 +3,74 @@ jp.coocan.life.bicycle.svg.js
 
 WebページからSVG要素の操作を簡単にするjavascript。
 
-## 関数
+# classes
 
-1. `Svg.createElement(nodename, attributes)`
-2. `Svg.mixin(dst, src)`
-3. `Svg.createLineElement(x1,y1,x2,y2, optAttrs)`
-4. `Svg.createRectElement(x, y, width, height, optAttrs)`
-5. `Svg.createCircleElement(cx, cy, r, optAttrs)`
-6. `Svg.createEllipseElement(cx, cy, rx, ry, optAttrs)`
-7. `Svg.createPathElement(d, optAttrs)`
-8. `Svg.createPolygonElement(points, optAttrs)`
-9. `Svg.createPolylineElement(points, optAttrs)`
+1. Svg
+1. Svg.Path
+1. Svg.Path.d
+
+# class Svg
+
+## static methods
+
+1. Svg.createElement(nodename, attributes)
+2. Svg.mixin(dst, src)
+3. Svg.createLineElement(x1,y1,x2,y2, optAttrs)
+4. Svg.createRectElement(x, y, width, height, optAttrs)
+5. Svg.createCircleElement(cx, cy, r, optAttrs)
+6. Svg.createEllipseElement(cx, cy, rx, ry, optAttrs)
+7. Svg.createPathElement(d, optAttrs)
+8. Svg.createPolygonElement(points, optAttrs)
+9. Svg.createPolylineElement(points, optAttrs)
+
+# class Svg.Path
+
+SVGPathElementを生成する。
+
+# class Svg.Path.d
+
+SVGPathElementのd属性をコマンドチェイン的に生成するためのクラス。
+
+## methods
+
+1. toString()
+1. moveTo(x, y)
+1. moveRel(dx, dy)
+1. lineTo(x, y)
+1. lineRel(dx, dy)
+1. hlineTo(y)
+1. hlineRel(dy)
+1. vlineTo(x)
+1. vlineRel(dx)
+1. quadBezierTo(x1, y1, x, y)
+1. quadBezierRel(dx1, dy1, dx, dy)
+1. cubicBezierTo(x1, y1, x2, y2, x, y)
+1. cubicBezierRel(dx1, dy1, dx2, dy2, dx, dy)
+
+## 関連クラス
+ 
+1. Svg.Path.d.Element
+1. Svg.Path.d.XYElement
+1. Svg.Path.d.Move
+1. Svg.Path.d.MoveTo
+1. Svg.Path.d.MoveRel
+1. Svg.Path.d.Line
+1. Svg.Path.d.LineTo
+1. Svg.Path.d.LineRel
+1. Svg.Path.d.OneParamElement
+1. Svg.Path.d.HLine
+1. Svg.Path.d.HLineTo
+1. Svg.Path.d.HLineRel
+1. Svg.Path.d.VLine
+1. Svg.Path.d.VLineTo
+1. Svg.Path.d.VLineRel
+1. Svg.Path.d.QuadBezier
+1. Svg.Path.d.QuadBezierTo
+1. Svg.Path.d.QuadBezierRel
+1. Svg.Path.d.CubicBezier
+1. Svg.Path.d.CubicBezierTo
+1. Svg.Path.d.CubicBezierRel
+
 
 ## `SvgTransformObject`クラス
 
