@@ -335,7 +335,7 @@ Svg.Path.d.QuadBezierRel.prototype = new Svg.Path.d.QuadBezier();
 /**
  * SVGPathElementの属性dのCubicベジェ曲線描画コマンド要素。
  */
-Svg.Path.d.CubicBezier = function() {}
+Svg.Path.d.CubicBezier = function() {};
 Svg.Path.d.CubicBezier.prototype = new Svg.Path.d.Element();
 Svg.Path.d.CubicBezier.prototype.create = function(isRelative, x1,y1,x2,y2,x,y) {
 	var shorthand = false;
