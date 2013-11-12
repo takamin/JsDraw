@@ -127,11 +127,12 @@ Svg.Path.d.prototype.add = function(command) {
 	this.commands.push(command);
 };
 Svg.Path.d.prototype.toString = function() {
-	var d = "";
-	for(var i = 0; i < this.commands.length; i++) {
-		d += this.commands[i].toString();
+	var l = this.commands.length;
+	var list = new Array(l);
+	for(var i = 0; i < l; i++) {
+		list[i] = this.commands[i].toString();
 	}
-	return d;
+	return list.join(' ');
 };
 Svg.Path.d.prototype.moveTo		= function(x, y)
 { this.add(new Svg.Path.d.MoveTo(x,y)); return this; };
@@ -178,7 +179,7 @@ Svg.Path.d.XYElement.prototype.create = function(commandChar, isRelative, x, y) 
 	this.y = y;
 };
 Svg.Path.d.XYElement.prototype.toString = function() {
-	return " " + this.commandChar + this.x  + "," + this.y;
+	return this.commandChar + this.x  + "," + this.y;
 };
 
 /**
