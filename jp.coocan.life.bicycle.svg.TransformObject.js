@@ -6,7 +6,7 @@ function SVGTransformObject() {
 	this.cy = 0;
 	this.translateX = 0;
 	this.translateY = 0;
-	this.rotate = 0;
+	this.rotation = 0;
 	this.element = Svg.createElement('g', {});
 	this.transformMatrix = this.element.getCTM();
 }
@@ -36,24 +36,36 @@ SVGTransformObject.prototype.setPos = function(translateX, translateY) {
 	this.translateX = translateX;
 	this.translateY = translateY;
 };
-
-//回転角度を設定
-SVGTransformObject.prototype.setRotation = function(rotate) {
-	this.rotate = rotate;
-};
-
-SVGTransformObject.prototype.addRotation = function(dT) {
-	this.rotate += dT;
-	while(this.rotate < 0) {
-		this.rotate += 360;
-	}
-	while(this.rotate >= 360) {
-		this.rotate -= 360;
-	}
-};
 SVGTransformObject.prototype.movePos = function(dx,dy) {
 	this.translateX += dx;
 	this.translateY += dy;
+};
+
+//回転角度を設定
+SVGTransformObject.prototype.setRotation = function(rotation) {
+	this.rotation = rotation;
+};
+
+SVGTransformObject.prototype.addRotation = function(dT) {
+	this.rotation += dT;
+	while(this.rotation < 0) {
+		this.rotation += 360;
+	}
+	while(this.rotation >= 360) {
+		this.rotation -= 360;
+	}
+};
+SVGTransformObject.prototype.moveTo = function(translateX, translateY) {
+	this.setPos(translateX, translateY);
+};
+SVGTransformObject.prototype.moveRel = function(dx,dy) {
+	this.movePos(dx,dy);
+};
+SVGTransformObject.prototype.right = function(dT) {
+	this.addRotation(-dT);
+};
+SVGTransformObject.prototype.left = function(dT) {
+	this.addRotation(dT);
 };
 
 SVGTransformObject.prototype.getTransformMatrix = function() {
@@ -62,7 +74,7 @@ SVGTransformObject.prototype.getTransformMatrix = function() {
 	var m = this.transformMatrix//オリジナルの変換行列
 			.translate(this.translateX, this.translateY)//移動
 			.translate(cx, cy)//(cx,cy)を中心に回転
-			.rotate(this.rotate)
+			.rotate(this.rotation)
 			.translate(-cx, -cy);
 	return m;
 };
