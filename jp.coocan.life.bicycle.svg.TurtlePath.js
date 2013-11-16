@@ -48,12 +48,10 @@ Svg.TurtlePath.prototype.turn = function(degree) {
 	return this;
 };
 Svg.TurtlePath.prototype.right = function(degree) {
-	this.turn(-degree);
-	return this;
+	return this.turn(-degree);
 };
 Svg.TurtlePath.prototype.left = function(degree) {
-	this.turn(degree);
-	return this;
+	return this.turn(degree);
 };
 Svg.TurtlePath.Vector = function(x,y) {
 	this.x = x;
